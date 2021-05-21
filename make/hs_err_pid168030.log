@@ -1,0 +1,537 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  Internal Error (src/hotspot/share/runtime/jniHandles.cpp:89), pid=168030, tid=168044
+#  assert(oopDesc::is_oop(obj)) failed: not an oop
+#
+# JRE version:  (15.0) (slowdebug build )
+# Java VM: OpenJDK 64-Bit Server VM (slowdebug 15-internal+0-adhoc.martynas.jdk, mixed mode, tiered, compressed oops, serial gc, linux-amd64)
+# Problematic frame:
+# V  [libjvm.so+0xadfa7b]  JNIHandles::make_local(JNIEnv_*, oopDesc*)+0x53
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/lib/systemd/systemd-coredump %P %u %g %s %t %c %h" (or dumping to /home/martynas/phd/jdk/make/core.168030)
+#
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dapplication.home=/home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk -Xms8m -XX:+UseSerialGC -Xms32M -Xmx512M -XX:TieredStopAtLevel=1 -Djdk.module.main=jdk.jlink jdk.jlink/jdk.tools.jmod.Main create --module-version 15-internal --target-platform linux-amd64 --module-path /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/interim-jmods --libs /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_libs/java.base --cmds /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_cmds/java.base --config /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_conf/java.base --class-path /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/modules/java.base --header-files /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_include/java.base --man-pages /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_man/java.base --legal-notices /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_legal/common:/home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_legal/java.base --exclude **{_the.*,_*.marker,*.diz,*.debuginfo,*.dSYM/**,*.dSYM} /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/interim-jmods/support/java.base.jmod
+
+Host: alpha, Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz, 8 cores, 23G, Arch Linux
+Time: Mon Mar 16 17:21:49 2020 GMT elapsed time: 0 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00007f939c033000):  JavaThread "main" [_thread_in_vm, id=168044, stack(0x00007f93a0bd4000,0x00007f93a0cd5000)]
+
+Stack: [0x00007f93a0bd4000,0x00007f93a0cd5000],  sp=0x00007f93a0cd3090,  free space=1020k
+Native frames: (J=compiled Java code, A=aot compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [libjvm.so+0xadfa7b]  JNIHandles::make_local(JNIEnv_*, oopDesc*)+0x53
+V  [libjvm.so+0xa84038]  jni_NewObject+0x30d
+C  [libjava.so+0x1f1bc]  newSizedStringJava+0x11b
+C  [libjava.so+0x1f2a7]  newStringJava+0x44
+C  [libjava.so+0x1f7c2]  JNU_NewStringPlatform+0xd9
+C  [libjava.so+0x1cead]  GetStringPlatform+0x32
+C  [libjava.so+0x16377]  Java_jdk_internal_util_SystemProps_00024Raw_platformProperties+0xe8a
+j  jdk.internal.util.SystemProps$Raw.platformProperties()[Ljava/lang/String;+0 java.base
+j  jdk.internal.util.SystemProps$Raw.<init>()V+5 java.base
+j  jdk.internal.util.SystemProps.initProperties()Ljava/util/Map;+4 java.base
+j  java.lang.System.initPhase1()V+0 java.base
+v  ~StubRoutines::call_stub
+V  [libjvm.so+0x9e2222]  JavaCalls::call_helper(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x5da
+V  [libjvm.so+0xebe6f4]  os::os_exception_wrapper(void (*)(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*), JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x36
+V  [libjvm.so+0x9e1c44]  JavaCalls::call(JavaValue*, methodHandle const&, JavaCallArguments*, Thread*)+0x8e
+V  [libjvm.so+0x9e1501]  JavaCalls::call_static(JavaValue*, Klass*, Symbol*, Symbol*, JavaCallArguments*, Thread*)+0x13d
+V  [libjvm.so+0x9e15fe]  JavaCalls::call_static(JavaValue*, Klass*, Symbol*, Symbol*, Thread*)+0x84
+V  [libjvm.so+0x116b004]  call_initPhase1(Thread*)+0x78
+V  [libjvm.so+0x116b583]  Threads::initialize_java_lang_classes(JavaThread*, Thread*)+0x333
+V  [libjvm.so+0x116be40]  Threads::create_vm(JavaVMInitArgs*, bool*)+0x580
+V  [libjvm.so+0xab0731]  JNI_CreateJavaVM_inner(JavaVM_**, void**, void*)+0xda
+V  [libjvm.so+0xab0a28]  JNI_CreateJavaVM+0x32
+C  [libjli.so+0x827c]  InitializeJVM+0x13e
+C  [libjli.so+0x4e66]  JavaMain+0xc6
+C  [libjli.so+0xc8f7]  ThreadJavaMain+0x27
+
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+j  jdk.internal.util.SystemProps$Raw.platformProperties()[Ljava/lang/String;+0 java.base
+j  jdk.internal.util.SystemProps$Raw.<init>()V+5 java.base
+j  jdk.internal.util.SystemProps.initProperties()Ljava/util/Map;+4 java.base
+j  java.lang.System.initPhase1()V+0 java.base
+v  ~StubRoutines::call_stub
+Register to memory mapping:
+
+RAX=0x00007f93a2f03000 points into unknown readable memory: 58 00 00 00 00 00 00 00
+RBX=0x00007f939c2049c0 points into unknown readable memory: 10 f8 b4 a2 93 7f 00 00
+RCX=0x00000000eaaa0000 is an unallocated location in the heap
+RDX=0x00000000eaaa0000 is an unallocated location in the heap
+RSP=0x00007f93a0cd3090 is pointing into the stack for thread: 0x00007f939c033000
+RBP=0x00007f93a0cd30b0 is pointing into the stack for thread: 0x00007f939c033000
+RSI=0x00007f939c1fd130 points into unknown readable memory: 90 00 00 9c 93 7f 00 00
+RDI=0x00007f93a0cd2fd0 is pointing into the stack for thread: 0x00007f939c033000
+R8 =0x00007f93a1550314: <offset 0x0000000000735314> in /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so at 0x00007f93a0e1b000
+R9 =0x00007f939c0008d0 points into unknown readable memory: 00 00 01 00 01 00 01 00
+R10=0x00007f93a2e359e0: <offset 0x00000000001bf9e0> in /usr/lib/libc.so.6 at 0x00007f93a2c76000
+R11=0x0 is NULL
+R12=0x0 is NULL
+R13={method} {0x00007f938c968a18} 'platformProperties' '()[Ljava/lang/String;' in 'jdk/internal/util/SystemProps$Raw'
+R14=0x00007f93a0cd3528 is pointing into the stack for thread: 0x00007f939c033000
+R15=0x00007f939c033000 is a thread
+
+
+Registers:
+RAX=0x00007f93a2f03000, RBX=0x00007f939c2049c0, RCX=0x00000000eaaa0000, RDX=0x00000000eaaa0000
+RSP=0x00007f93a0cd3090, RBP=0x00007f93a0cd30b0, RSI=0x00007f939c1fd130, RDI=0x00007f93a0cd2fd0
+R8 =0x00007f93a1550314, R9 =0x00007f939c0008d0, R10=0x00007f93a2e359e0, R11=0x0000000000000000
+R12=0x0000000000000000, R13=0x00007f938c968a18, R14=0x00007f93a0cd3528, R15=0x00007f939c033000
+RIP=0x00007f93a18faa7b, EFLAGS=0x0000000000010202, CSGSFS=0x002b000000000033, ERR=0x0000000000000006
+  TRAPNO=0x000000000000000e
+
+Top of Stack: (sp=0x00007f93a0cd3090)
+0x00007f93a0cd3090:   00007f939c1fd130 00007f939c033370
+0x00007f93a0cd30a0:   0000000000000000 00007f939c033000
+0x00007f93a0cd30b0:   00007f93a0cd32a0 00007f93a189f038
+0x00007f93a0cd30c0:   00007f93a0cd3140 00007f939c1e0f98 
+
+Instructions: (pc=0x00007f93a18faa7b)
+0x00007f93a18fa97b:   83 c0 50 48 8b 10 48 8b 45 f8 48 89 c7 ff d2 83
+0x00007f93a18fa98b:   f0 01 84 c0 74 36 48 8d 05 f8 18 27 01 48 8b 00
+0x00007f93a18fa99b:   c6 00 58 48 8d 0d 0e 75 a8 00 48 8d 15 8c 6c a8
+0x00007f93a18fa9ab:   00 be 4d 00 00 00 48 8d 3d 90 74 a8 00 b8 00 00
+0x00007f93a18fa9bb:   00 00 e8 7c de c4 ff e8 51 39 3d 00 e8 b6 0c 00
+0x00007f93a18fa9cb:   00 84 c0 74 36 48 8d 05 b9 18 27 01 48 8b 00 c6
+0x00007f93a18fa9db:   00 58 48 8d 0d 8d 74 a8 00 48 8d 15 9d 74 a8 00
+0x00007f93a18fa9eb:   be 4e 00 00 00 48 8d 3d 51 74 a8 00 b8 00 00 00
+0x00007f93a18fa9fb:   00 e8 3d de c4 ff e8 12 39 3d 00 48 8b 45 f8 48
+0x00007f93a18faa0b:   89 c7 e8 a6 d4 c1 ff 48 89 c2 48 8b 45 f0 48 89
+0x00007f93a18faa1b:   c6 48 89 d7 e8 34 12 00 00 90 c9 c3 90 55 48 89
+0x00007f93a18faa2b:   e5 48 83 ec 20 48 89 7d e8 48 89 75 e0 48 83 7d
+0x00007f93a18faa3b:   e0 00 75 0a b8 00 00 00 00 e9 bc 00 00 00 48 8b
+0x00007f93a18faa4b:   45 e8 48 89 c7 e8 ec f3 d5 ff 48 89 45 f8 48 8b
+0x00007f93a18faa5b:   45 e0 be 00 00 00 00 48 89 c7 e8 e2 e3 3a 00 83
+0x00007f93a18faa6b:   f0 01 84 c0 74 36 48 8d 05 18 18 27 01 48 8b 00
+0x00007f93a18faa7b:   c6 00 58 48 8d 0d 8b 73 a8 00 48 8d 15 94 73 a8
+0x00007f93a18faa8b:   00 be 59 00 00 00 48 8d 3d b0 73 a8 00 b8 00 00
+0x00007f93a18faa9b:   00 00 e8 9c dd c4 ff e8 71 38 3d 00 e8 d6 0b 00
+0x00007f93a18faaab:   00 84 c0 74 36 48 8d 05 d9 17 27 01 48 8b 00 c6
+0x00007f93a18faabb:   00 58 48 8d 0d ad 73 a8 00 48 8d 15 bd 73 a8 00
+0x00007f93a18faacb:   be 5a 00 00 00 48 8d 3d 71 73 a8 00 b8 00 00 00
+0x00007f93a18faadb:   00 e8 5d dd c4 ff e8 32 38 3d 00 48 8b 45 f8 48
+0x00007f93a18faaeb:   89 c7 e8 c6 d3 c1 ff 48 89 c2 48 8b 45 e0 48 89
+0x00007f93a18faafb:   c6 48 89 d7 e8 54 11 00 00 90 c9 c3 55 48 89 e5
+0x00007f93a18fab0b:   48 83 ec 10 89 7d fc 48 89 75 f0 83 7d fc 00 75
+0x00007f93a18fab1b:   35 48 8b 45 f0 49 89 c1 4c 8d 05 9b 73 a8 00 b9
+0x00007f93a18fab2b:   01 00 00 e0 ba 08 00 00 00 be 64 00 00 00 48 8d
+0x00007f93a18fab3b:   3d 08 73 a8 00 b8 00 00 00 00 e8 a5 e0 c4 ff e8
+0x00007f93a18fab4b:   c9 37 3d 00 eb 3c 83 7d fc 01 74 36 48 8d 05 32
+0x00007f93a18fab5b:   17 27 01 48 8b 00 c6 00 58 48 8d 0d 76 73 a8 00
+0x00007f93a18fab6b:   48 8d 15 7e 73 a8 00 be 67 00 00 00 48 8d 3d ca 
+
+
+Stack slot to memory mapping:
+stack at sp + 0 slots: 0x00007f939c1fd130 points into unknown readable memory: 90 00 00 9c 93 7f 00 00
+stack at sp + 1 slots: 0x00007f939c033370 points into unknown readable memory: 80 ef b6 a2 93 7f 00 00
+stack at sp + 2 slots: 0x0 is NULL
+stack at sp + 3 slots: 0x00007f939c033000 is a thread
+stack at sp + 4 slots: 0x00007f93a0cd32a0 is pointing into the stack for thread: 0x00007f939c033000
+stack at sp + 5 slots: 0x00007f93a189f038: <offset 0x0000000000a84038> in /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so at 0x00007f93a0e1b000
+stack at sp + 6 slots: 0x00007f93a0cd3140 is pointing into the stack for thread: 0x00007f939c033000
+stack at sp + 7 slots: 0x00007f939c1e0f98 points into unknown readable memory: 98 5a 80 8c 93 7f 00 00
+
+
+---------------  P R O C E S S  ---------------
+
+uid  : 1000 euid : 1000 gid  : 1000 egid : 1000
+
+umask: 0022 (----w--w-)
+
+Threads class SMR info:
+_java_thread_list=0x00007f939c1b7bf0, length=3, elements={
+0x00007f939c033000, 0x00007f939c1da000, 0x00007f939c1dc800
+}
+_java_thread_list_alloc_cnt=4, _java_thread_list_free_cnt=2, _java_thread_list_max=3, _nested_thread_list_max=0
+_tlh_cnt=24, _tlh_times=0, avg_tlh_time=0.00, _tlh_time_max=0
+_delete_lock_wait_cnt=0, _delete_lock_wait_max=0
+_to_delete_list_cnt=0, _to_delete_list_max=1
+
+Java Threads: ( => current thread )
+=>0x00007f939c033000 JavaThread "main" [_thread_in_vm, id=168044, stack(0x00007f93a0bd4000,0x00007f93a0cd5000)]
+  0x00007f939c1da000 JavaThread "Reference Handler" daemon [_thread_blocked, id=168552, stack(0x00007f93a04a7000,0x00007f93a05a8000)]
+  0x00007f939c1dc800 JavaThread "Finalizer" daemon [_thread_blocked, id=168553, stack(0x00007f93a03a6000,0x00007f93a04a7000)]
+
+Other Threads:
+  0x00007f939c1b8000 VMThread "VM Thread" [stack: 0x00007f93a05aa000,0x00007f93a06aa000] [id=168551]
+
+Threads with active compile tasks:
+
+VM state:not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x00000000e0000000, size: 512 MB, Compressed Oops mode: 32-bit
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 3
+Compressed class space size: 1073741824 Address: 0x0000000100000000
+
+Heap:
+ def new generation   total 9792K, used 174K [0x00000000e0000000, 0x00000000e0aa0000, 0x00000000eaaa0000)
+  eden space 8704K,   2% used [0x00000000e0000000, 0x00000000e002b860, 0x00000000e0880000)
+  from space 1088K,   0% used [0x00000000e0880000, 0x00000000e0880000, 0x00000000e0990000)
+  to   space 1088K,   0% used [0x00000000e0990000, 0x00000000e0990000, 0x00000000e0aa0000)
+ tenured generation   total 21888K, used 0K [0x00000000eaaa0000, 0x00000000ec000000, 0x0000000100000000)
+   the space 21888K,   0% used [0x00000000eaaa0000, 0x00000000eaaa0000, 0x00000000eaaa0200, 0x00000000ec000000)
+ Metaspace       used 1797K, capacity 4480K, committed 4480K, reserved 1056768K
+  class space    used 139K, capacity 384K, committed 384K, reserved 1048576K
+
+Card table byte_map: [0x00007f93a08b4000,0x00007f93a09b5000] _byte_map_base: 0x00007f93a01b4000
+
+Polling page: 0x00007f93a2eb2000
+
+Metaspace:
+
+Usage:
+  Non-class:      4.00 MB capacity,     1.62 MB ( 40%) used,     2.38 MB ( 60%) free+waste,    64 bytes ( <1%) overhead. 
+      Class:    384.00 KB capacity,   139.41 KB ( 36%) used,   244.52 KB ( 64%) free+waste,    64 bytes ( <1%) overhead. 
+       Both:      4.38 MB capacity,     1.76 MB ( 40%) used,     2.62 MB ( 60%) free+waste,   128 bytes ( <1%) overhead. 
+
+Virtual space:
+  Non-class space:        8.00 MB reserved,       4.00 MB ( 50%) committed 
+      Class space:        1.00 GB reserved,     384.00 KB ( <1%) committed 
+             Both:        1.01 GB reserved,       4.38 MB ( <1%) committed 
+
+Chunk freelists:
+   Non-Class:  0 bytes
+       Class:  0 bytes
+        Both:  0 bytes
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+
+CodeHeap 'non-profiled nmethods': size=238384Kb used=0Kb max_used=0Kb free=238384Kb
+ bounds [0x00007f938d734000, 0x00007f938d9a4000, 0x00007f939c000000]
+CodeHeap 'non-nmethods': size=7376Kb used=1041Kb max_used=1105Kb free=6334Kb
+ bounds [0x00007f938d000000, 0x00007f938d270000, 0x00007f938d734000]
+ total_blobs=690 nmethods=0 adapters=664
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (0 events):
+No events
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (20 events):
+Event: 0.303 loading class sun/nio/cs/StandardCharsets$Cache done
+Event: 0.304 loading class sun/nio/cs/UTF_8
+Event: 0.304 loading class sun/nio/cs/Unicode
+Event: 0.304 loading class sun/nio/cs/HistoricallyNamedCharset
+Event: 0.304 loading class sun/nio/cs/HistoricallyNamedCharset done
+Event: 0.304 loading class sun/nio/cs/Unicode done
+Event: 0.305 loading class sun/nio/cs/UTF_8 done
+Event: 0.305 loading class sun/nio/cs/ISO_8859_1
+Event: 0.305 loading class sun/nio/cs/ISO_8859_1 done
+Event: 0.306 loading class sun/nio/cs/US_ASCII
+Event: 0.306 loading class sun/nio/cs/US_ASCII done
+Event: 0.306 loading class java/nio/charset/StandardCharsets
+Event: 0.306 loading class java/nio/charset/StandardCharsets done
+Event: 0.307 loading class sun/nio/cs/UTF_16BE
+Event: 0.307 loading class sun/nio/cs/UTF_16BE done
+Event: 0.307 loading class sun/nio/cs/UTF_16LE
+Event: 0.307 loading class sun/nio/cs/UTF_16LE done
+Event: 0.308 loading class sun/nio/cs/UTF_16
+Event: 0.308 loading class sun/nio/cs/UTF_16 done
+Event: 0.308 Protecting memory [0x00007f93a2f03000,0x00007f93a2f04000] with protection modes 7
+
+
+Dynamic libraries:
+e0000000-e0aa0000 rw-p 00000000 00:00 0 
+e0aa0000-eaaa0000 ---p 00000000 00:00 0 
+eaaa0000-ec000000 rw-p 00000000 00:00 0 
+ec000000-100000000 ---p 00000000 00:00 0 
+100000000-100060000 rw-p 00000000 00:00 0 
+100060000-140000000 ---p 00000000 00:00 0 
+55bfe18c3000-55bfe18c4000 r--p 00000000 103:03 13782029                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/bin/jmod
+55bfe18c4000-55bfe18c5000 r-xp 00001000 103:03 13782029                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/bin/jmod
+55bfe18c5000-55bfe18c6000 r--p 00002000 103:03 13782029                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/bin/jmod
+55bfe18c6000-55bfe18c7000 r--p 00002000 103:03 13782029                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/bin/jmod
+55bfe18c7000-55bfe18c8000 rw-p 00003000 103:03 13782029                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/bin/jmod
+55bfe378e000-55bfe37af000 rw-p 00000000 00:00 0                          [heap]
+7f937f75b000-7f9380000000 rw-p 00000000 00:00 0 
+7f9380000000-7f9380021000 rw-p 00000000 00:00 0 
+7f9380021000-7f9384000000 ---p 00000000 00:00 0 
+7f9384000000-7f9384021000 rw-p 00000000 00:00 0 
+7f9384021000-7f9388000000 ---p 00000000 00:00 0 
+7f9388000000-7f9388021000 rw-p 00000000 00:00 0 
+7f9388021000-7f938c000000 ---p 00000000 00:00 0 
+7f938c222000-7f938cc00000 rw-p 00000000 00:00 0 
+7f938cc00000-7f938d000000 ---p 00000000 00:00 0 
+7f938d000000-7f938d270000 rwxp 00000000 00:00 0 
+7f938d270000-7f938d734000 ---p 00000000 00:00 0 
+7f938d734000-7f938d9a4000 rwxp 00000000 00:00 0 
+7f938d9a4000-7f939c000000 ---p 00000000 00:00 0 
+7f939c000000-7f939c223000 rw-p 00000000 00:00 0 
+7f939c223000-7f93a0000000 ---p 00000000 00:00 0 
+7f93a03a6000-7f93a03aa000 ---p 00000000 00:00 0 
+7f93a03aa000-7f93a04a7000 rw-p 00000000 00:00 0 
+7f93a04a7000-7f93a04ab000 ---p 00000000 00:00 0 
+7f93a04ab000-7f93a05a8000 rw-p 00000000 00:00 0 
+7f93a05a8000-7f93a05a9000 ---p 00000000 00:00 0 
+7f93a05a9000-7f93a0814000 rw-p 00000000 00:00 0 
+7f93a0814000-7f93a08b4000 ---p 00000000 00:00 0 
+7f93a08b4000-7f93a08ba000 rw-p 00000000 00:00 0 
+7f93a08ba000-7f93a0909000 ---p 00000000 00:00 0 
+7f93a0909000-7f93a0914000 rw-p 00000000 00:00 0 
+7f93a0914000-7f93a09b4000 ---p 00000000 00:00 0 
+7f93a09b4000-7f93a09ba000 rw-p 00000000 00:00 0 
+7f93a09ba000-7f93a0b87000 ---p 00000000 00:00 0 
+7f93a0b87000-7f93a0b8c000 rw-p 00000000 00:00 0 
+7f93a0b8c000-7f93a0b96000 ---p 00000000 00:00 0 
+7f93a0b96000-7f93a0b98000 r--p 00000000 103:03 9719675                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libzip.so
+7f93a0b98000-7f93a0b9f000 r-xp 00002000 103:03 9719675                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libzip.so
+7f93a0b9f000-7f93a0ba1000 r--p 00009000 103:03 9719675                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libzip.so
+7f93a0ba1000-7f93a0ba2000 r--p 0000a000 103:03 9719675                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libzip.so
+7f93a0ba2000-7f93a0ba3000 rw-p 0000b000 103:03 9719675                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libzip.so
+7f93a0ba3000-7f93a0baf000 r--p 00000000 103:03 9719669                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjava.so
+7f93a0baf000-7f93a0bca000 r-xp 0000c000 103:03 9719669                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjava.so
+7f93a0bca000-7f93a0bd1000 r--p 00027000 103:03 9719669                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjava.so
+7f93a0bd1000-7f93a0bd2000 r--p 0002d000 103:03 9719669                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjava.so
+7f93a0bd2000-7f93a0bd4000 rw-p 0002e000 103:03 9719669                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjava.so
+7f93a0bd4000-7f93a0bd8000 ---p 00000000 00:00 0 
+7f93a0bd8000-7f93a0cd5000 rw-p 00000000 00:00 0 
+7f93a0cd5000-7f93a0ce4000 r--p 00000000 103:03 13897083                  /usr/lib/libm-2.31.so
+7f93a0ce4000-7f93a0d80000 r-xp 0000f000 103:03 13897083                  /usr/lib/libm-2.31.so
+7f93a0d80000-7f93a0e19000 r--p 000ab000 103:03 13897083                  /usr/lib/libm-2.31.so
+7f93a0e19000-7f93a0e1a000 r--p 00143000 103:03 13897083                  /usr/lib/libm-2.31.so
+7f93a0e1a000-7f93a0e1b000 rw-p 00144000 103:03 13897083                  /usr/lib/libm-2.31.so
+7f93a0e1b000-7f93a10a6000 r--p 00000000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a10a6000-7f93a20d4000 r-xp 0028b000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a20d4000-7f93a2a9d000 r--p 012b9000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a2a9d000-7f93a2a9e000 ---p 01c82000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a2a9e000-7f93a2b68000 r--p 01c82000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a2b68000-7f93a2ba5000 rw-p 01d4c000 103:03 13382542                  /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/server/libjvm.so
+7f93a2ba5000-7f93a2c76000 rw-p 00000000 00:00 0 
+7f93a2c76000-7f93a2c9b000 r--p 00000000 103:03 13897055                  /usr/lib/libc-2.31.so
+7f93a2c9b000-7f93a2de7000 r-xp 00025000 103:03 13897055                  /usr/lib/libc-2.31.so
+7f93a2de7000-7f93a2e32000 r--p 00171000 103:03 13897055                  /usr/lib/libc-2.31.so
+7f93a2e32000-7f93a2e35000 r--p 001bb000 103:03 13897055                  /usr/lib/libc-2.31.so
+7f93a2e35000-7f93a2e38000 rw-p 001be000 103:03 13897055                  /usr/lib/libc-2.31.so
+7f93a2e38000-7f93a2e3c000 rw-p 00000000 00:00 0 
+7f93a2e3c000-7f93a2e3d000 r--p 00000000 103:03 13897070                  /usr/lib/libdl-2.31.so
+7f93a2e3d000-7f93a2e3e000 r-xp 00001000 103:03 13897070                  /usr/lib/libdl-2.31.so
+7f93a2e3e000-7f93a2e3f000 r--p 00002000 103:03 13897070                  /usr/lib/libdl-2.31.so
+7f93a2e3f000-7f93a2e40000 r--p 00002000 103:03 13897070                  /usr/lib/libdl-2.31.so
+7f93a2e40000-7f93a2e41000 rw-p 00003000 103:03 13897070                  /usr/lib/libdl-2.31.so
+7f93a2e41000-7f93a2e48000 r--p 00000000 103:03 13897128                  /usr/lib/libpthread-2.31.so
+7f93a2e48000-7f93a2e58000 r-xp 00007000 103:03 13897128                  /usr/lib/libpthread-2.31.so
+7f93a2e58000-7f93a2e5d000 r--p 00017000 103:03 13897128                  /usr/lib/libpthread-2.31.so
+7f93a2e5d000-7f93a2e5e000 r--p 0001b000 103:03 13897128                  /usr/lib/libpthread-2.31.so
+7f93a2e5e000-7f93a2e5f000 rw-p 0001c000 103:03 13897128                  /usr/lib/libpthread-2.31.so
+7f93a2e5f000-7f93a2e63000 rw-p 00000000 00:00 0 
+7f93a2e63000-7f93a2e66000 r--p 00000000 103:03 9719665                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjli.so
+7f93a2e66000-7f93a2e73000 r-xp 00003000 103:03 9719665                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjli.so
+7f93a2e73000-7f93a2e77000 r--p 00010000 103:03 9719665                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjli.so
+7f93a2e77000-7f93a2e78000 r--p 00013000 103:03 9719665                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjli.so
+7f93a2e78000-7f93a2e79000 rw-p 00014000 103:03 9719665                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjli.so
+7f93a2e79000-7f93a2e7c000 r--p 00000000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e7c000-7f93a2e8a000 r-xp 00003000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e8a000-7f93a2e90000 r--p 00011000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e90000-7f93a2e91000 ---p 00017000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e91000-7f93a2e92000 r--p 00017000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e92000-7f93a2e93000 rw-p 00018000 103:03 13907913                  /usr/lib/libz.so.1.2.11
+7f93a2e93000-7f93a2e95000 rw-p 00000000 00:00 0 
+7f93a2e96000-7f93a2e9e000 rw-s 00000000 00:2e 420016                     /tmp/hsperfdata_martynas/168030
+7f93a2e9e000-7f93a2ea1000 r--p 00000000 103:03 13897120                  /usr/lib/libnss_files-2.31.so
+7f93a2ea1000-7f93a2ea8000 r-xp 00003000 103:03 13897120                  /usr/lib/libnss_files-2.31.so
+7f93a2ea8000-7f93a2eaa000 r--p 0000a000 103:03 13897120                  /usr/lib/libnss_files-2.31.so
+7f93a2eaa000-7f93a2eab000 r--p 0000b000 103:03 13897120                  /usr/lib/libnss_files-2.31.so
+7f93a2eab000-7f93a2eac000 rw-p 0000c000 103:03 13897120                  /usr/lib/libnss_files-2.31.so
+7f93a2eac000-7f93a2eb2000 rw-p 00000000 00:00 0 
+7f93a2eb2000-7f93a2eb3000 ---p 00000000 00:00 0 
+7f93a2eb3000-7f93a2eb4000 r--p 00000000 00:00 0 
+7f93a2eb4000-7f93a2eb8000 r--p 00000000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2eb8000-7f93a2ece000 r-xp 00004000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2ece000-7f93a2ed5000 r--p 0001a000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2ed5000-7f93a2ed6000 ---p 00021000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2ed6000-7f93a2ed8000 r--p 00021000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2ed8000-7f93a2ed9000 rw-p 00023000 103:03 9719679                   /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/lib/libjimage.so
+7f93a2ed9000-7f93a2edb000 r--p 00000000 103:03 13897036                  /usr/lib/ld-2.31.so
+7f93a2edb000-7f93a2efb000 r-xp 00002000 103:03 13897036                  /usr/lib/ld-2.31.so
+7f93a2efb000-7f93a2f03000 r--p 00022000 103:03 13897036                  /usr/lib/ld-2.31.so
+7f93a2f03000-7f93a2f04000 rwxp 00000000 00:00 0 
+7f93a2f04000-7f93a2f05000 r--p 0002a000 103:03 13897036                  /usr/lib/ld-2.31.so
+7f93a2f05000-7f93a2f06000 rw-p 0002b000 103:03 13897036                  /usr/lib/ld-2.31.so
+7f93a2f06000-7f93a2f07000 rw-p 00000000 00:00 0 
+7ffee9ede000-7ffee9f00000 rw-p 00000000 00:00 0                          [stack]
+7ffee9fd2000-7ffee9fd5000 r--p 00000000 00:00 0                          [vvar]
+7ffee9fd5000-7ffee9fd6000 r-xp 00000000 00:00 0                          [vdso]
+ffffffffff600000-ffffffffff601000 --xp 00000000 00:00 0                  [vsyscall]
+
+
+VM Arguments:
+jvm_args: -Dapplication.home=/home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk -Xms8m -XX:+UseSerialGC -Xms32M -Xmx512M -XX:TieredStopAtLevel=1 -Djdk.module.main=jdk.jlink 
+java_command: jdk.jlink/jdk.tools.jmod.Main create --module-version 15-internal --target-platform linux-amd64 --module-path /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/interim-jmods --libs /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_libs/java.base --cmds /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_cmds/java.base --config /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_conf/java.base --class-path /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/jdk/modules/java.base --header-files /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_include/java.base --man-pages /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_man/java.base --legal-notices /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_legal/common:/home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/modules_legal/java.base --exclude **{_the.*,_*.marker,*.diz,*.debuginfo,*.dSYM/**,*.dSYM} /home/martynas/phd/jdk/build/linux-x86_64-server-slowdebug/support/interim-jmods/support/java.base.jmod
+java_class_path (initial): <not set>
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}     Number of compiler threads to run
+   size_t InitialHeapSize                          = 33554432                                  {product} {command line}  Initial heap size (in bytes); zero means use ergonomics
+   size_t MaxHeapSize                              = 536870912                                 {product} {command line}  Maximum heap size (in bytes)
+   size_t MaxNewSize                               = 178913280                                 {product} {ergonomic}     Maximum new generation size (in bytes), max_uintx means set ergonomically
+   size_t MinHeapDeltaBytes                        = 196608                                    {product} {ergonomic}     The minimum change in heap space due to GC (in bytes)
+   size_t MinHeapSize                              = 33554432                                  {product} {command line}  Minimum heap size (in bytes); zero means use ergonomics
+   size_t NewSize                                  = 11141120                                  {product} {ergonomic}     Initial new generation size (in bytes)
+    uintx NonNMethodCodeHeapSize                   = 7549744                                {pd product} {ergonomic}     Size of code heap with non-nmethods (in bytes)
+    uintx NonProfiledCodeHeapSize                  = 244108496                              {pd product} {ergonomic}     Size of code heap with non-profiled methods (in bytes)
+   size_t OldSize                                  = 22413312                                  {product} {ergonomic}     Initial tenured generation size (in bytes)
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}     Size of code heap with profiled methods (in bytes)
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}     Reserved code cache size (in bytes) - maximum code cache size
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}     Use a segmented code cache
+   size_t SoftMaxHeapSize                          = 536870912                              {manageable} {ergonomic}     Soft limit for maximum heap size (in bytes)
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}  Stop at given compilation level
+     bool UseCompressedClassPointers               = true                                 {lp64_product} {ergonomic}     Use 32-bit class pointers in 64-bit VM. lp64_product means flag is always constant in 32 bit VM
+     bool UseCompressedOops                        = true                                 {lp64_product} {ergonomic}     Use 32-bit object references in 64-bit VM. lp64_product means flag is always constant in 32 bit VM
+     bool UseSerialGC                              = true                                      {product} {command line}  Use the Serial garbage collector
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+PATH=/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:/home/martynas/.gem/ruby/2.6.0/bin:/home/martynas/phd/mx:/home/martynas/.local/bin
+SHELL=/bin/bash
+DISPLAY=:0
+
+Signal Handlers:
+SIGSEGV: [libjvm.so+0x11eea51], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGBUS: [libjvm.so+0x11eea51], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGFPE: [libjvm.so+0x11eea51], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGPIPE: [libjvm.so+0xebc6c9], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGXFSZ: [libjvm.so+0xebc6c9], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGILL: [libjvm.so+0x11eea51], sa_mask[0]=11111111011111111101111111111110, sa_flags=SA_RESTART|SA_SIGINFO
+SIGUSR2: [libjvm.so+0xebbee7], sa_mask[0]=00000000000000000000000000000000, sa_flags=SA_RESTART|SA_SIGINFO
+SIGHUP: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGINT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGTERM: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+SIGQUIT: SIG_DFL, sa_mask[0]=00000000000000000000000000000000, sa_flags=none
+
+
+---------------  S Y S T E M  ---------------
+
+OS:LSB_VERSION=1.4
+DISTRIB_ID=Arch
+DISTRIB_RELEASE=rolling
+DISTRIB_DESCRIPTION="Arch Linux"
+uname:Linux alpha 5.4.19-1-lts #1 SMP Tue, 11 Feb 2020 15:35:50 +0000 x86_64
+OS uptime: 0 days 6:31 hours
+libc:glibc 2.31 NPTL 2.31 
+rlimit: STACK 8192k, CORE infinity, NPROC 95134, NOFILE 524288, AS infinity, CPU infinity, DATA infinity, FSIZE infinity
+load average:2.08 3.01 4.05
+
+/proc/meminfo:
+MemTotal:       24369164 kB
+MemFree:         9569468 kB
+MemAvailable:   17750516 kB
+Buffers:          617632 kB
+Cached:          7997516 kB
+SwapCached:            0 kB
+Active:          9585472 kB
+Inactive:        3216376 kB
+Active(anon):    4745304 kB
+Inactive(anon):   357228 kB
+Active(file):    4840168 kB
+Inactive(file):  2859148 kB
+Unevictable:      758904 kB
+Mlocked:              32 kB
+SwapTotal:       2097148 kB
+SwapFree:        2097148 kB
+Dirty:            526252 kB
+Writeback:             0 kB
+AnonPages:       4945952 kB
+Mapped:           884652 kB
+Shmem:           1126520 kB
+KReclaimable:     886032 kB
+Slab:            1047364 kB
+SReclaimable:     886032 kB
+SUnreclaim:       161332 kB
+KernelStack:       13904 kB
+PageTables:        57420 kB
+NFS_Unstable:          0 kB
+Bounce:                0 kB
+WritebackTmp:          0 kB
+CommitLimit:    14281728 kB
+Committed_AS:   12128732 kB
+VmallocTotal:   34359738367 kB
+VmallocUsed:       33276 kB
+VmallocChunk:          0 kB
+Percpu:             4064 kB
+HardwareCorrupted:     0 kB
+AnonHugePages:         0 kB
+ShmemHugePages:        0 kB
+ShmemPmdMapped:        0 kB
+FileHugePages:         0 kB
+FilePmdMapped:         0 kB
+HugePages_Total:       0
+HugePages_Free:        0
+HugePages_Rsvd:        0
+HugePages_Surp:        0
+Hugepagesize:       2048 kB
+Hugetlb:               0 kB
+DirectMap4k:      312376 kB
+DirectMap2M:    13053952 kB
+DirectMap1G:    12582912 kB
+
+
+/proc/sys/kernel/threads-max (system-wide limit on the number of threads):
+190268
+
+
+/proc/sys/vm/max_map_count (maximum number of memory map areas a process may have):
+65530
+
+
+/proc/sys/kernel/pid_max (system-wide limit on number of process identifiers):
+4194304
+
+
+
+container (cgroup) information:
+container_type: cgroupv1
+cpu_cpuset_cpus: 0-7
+cpu_memory_nodes: 0
+active_processor_count: 8
+cpu_quota: no quota
+cpu_period: 100000
+cpu_shares: no shares
+memory_limit_in_bytes: unlimited
+memory_and_swap_limit_in_bytes: unlimited
+memory_soft_limit_in_bytes: unlimited
+memory_usage_in_bytes: 14468767744
+memory_max_usage_in_bytes: 17707831296
+
+Steal ticks since vm start: 0
+Steal ticks percentage since vm start:  0.000
+
+CPU:total 8 (initial active 8) (4 cores per cpu, 2 threads per core) family 6 model 142 stepping 10, cmov, cx8, fxsr, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, avx, avx2, aes, clmul, erms, rtm, 3dnowpref, lzcnt, ht, tsc, tscinvbit, bmi1, bmi2, adx, fma
+CPU Model and flags from /proc/cpuinfo:
+model name	: Intel(R) Core(TM) i5-8350U CPU @ 1.70GHz
+flags		: fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc art arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc cpuid aperfmperf pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 sdbg fma cx16 xtpr pdcm pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch cpuid_fault epb invpcid_single pti ssbd ibrs ibpb stibp tpr_shadow vnmi flexpriority ept vpid ept_ad fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm mpx rdseed adx smap clflushopt intel_pt xsaveopt xsavec xgetbv1 xsaves dtherm ida arat pln pts hwp hwp_notify hwp_act_window hwp_epp md_clear flush_l1d
+
+Memory: 4k page, physical 24369164k(9569468k free), swap 2097148k(2097148k free)
+
+vm_info: OpenJDK 64-Bit Server VM (slowdebug 15-internal+0-adhoc.martynas.jdk) for linux-amd64 JRE (15-internal+0-adhoc.martynas.jdk), built on Mar 16 2020 17:21:26 by "martynas" with gcc 9.2.1 20200130
+
+END.
